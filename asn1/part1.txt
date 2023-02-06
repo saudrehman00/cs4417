@@ -1,0 +1,48 @@
+INDEXING 
+2.
+Shards allow for horizontal scaling of an index for better search performance. 
+3.
+Replicating an index provides redundancy and high availability. 
+4.
+Cluster health is yellow when there are some unassigned shards, meaning the data is not fully available.
+
+INDEXING REDDIT
+1. curl -X GET "localhost:9200/_cat/indices?v&pretty"
+
+2. comments
+
+3. 32.6mb
+health status index    uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+yellow open   comments _OnB_kBSSGuXaYWQYFHSsA   1   1      61013            0     32.6mb         32.6mb
+
+SEARCH
+1.
+The three queries return different sets of documents. 
+    Query 1 returns documents containing the term "cat", 
+    Query 2 returns documents containing the term "cats",
+    Query 3 returns documents containing both the terms "cat" and "cats". 
+This can be determined by examining the "query" field in the request payload of each query.
+
+2.
+Query 1 highest score: 10.503806
+Query 2 highest score: 11.629242
+Query 3 highest score: 18.84402
+
+The highest score for each query can be found in the "max_score" section of the response. The document with the highest score is considered the most relevant match for the query.
+
+3.
+Stemming is the process of reducing words to their base or root form. Based on the scores above it does not seem like it is doing a comprhensive screening if any.
+
+4.
+A query that could be used to check whether or not Elasticsearch removes a common English stopword is:
+curl -XGET "localhost:9200/_search?pretty" -H "Content-Type: application/json" -d"{ "query": { "match" : { "body" : { "query" : "the", "minimum_should_match" : 1 } } } }"
+
+This query searches for documents containing the term "the". If Elasticsearch is removing common English stopwords, such as "the", then this query should not return any results.
+
+ANALYZERS
+curl -X DELETE localhost:9200/comments?pretty
+1.
+The results have changed from before as the max value has decreased for the first two queries while increased for the last query.
+
+2.
+The index has become smaller. Just by looking at the query it seems to have dropped the case sensitivity from its search. By dropping the case sensitivity it probably has less entries but its list got longer. Although I am unclear on what exactly changed, I also noticed a change in speed from the previous analyzer which seemed faster.

@@ -1,0 +1,113 @@
+
+curl -X GET "localhost:9200/_cat/health?v&pretty"
+epoch      timestamp cluster       status node.total node.data shards pri relo init unassign pending_tasks max_task_wait_time active_shards_percent
+1675706870 18:07:50  elasticsearch yellow          1         1      2   2    0    0        1             0                  -                 66.7%
+
+curl -X GET "localhost:9200/_cat/nodes?v&pretty"
+ip         heap.percent ram.percent cpu load_1m load_5m load_15m node.role   master name
+172.19.0.2           19          96   1    0.00    0.05     0.19 cdfhilmrstw *      es01
+
+curl -X GET "localhost:9200/_cat/indices?v&pretty"
+health status index    uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+yellow open   customer kCgkSFXnSLOlJo5BKVVRhQ   1   1          0            0       225b           225b
+
+curl -X PUT "localhost:9200/customer?pretty&pretty"
+{
+  "error" : {
+    "root_cause" : [
+      {
+        "type" : "resource_already_exists_exception",
+        "reason" : "index [customer/kCgkSFXnSLOlJo5BKVVRhQ] already exists",
+        "index_uuid" : "kCgkSFXnSLOlJo5BKVVRhQ",
+        "index" : "customer"
+      }
+    ],
+    "type" : "resource_already_exists_exception",
+    "reason" : "index [customer/kCgkSFXnSLOlJo5BKVVRhQ] already exists",
+    "index_uuid" : "kCgkSFXnSLOlJo5BKVVRhQ",
+    "index" : "customer"
+  },
+  "status" : 400
+}
+
+curl -X GET "localhost:9200/_cat/indices?v&pretty"
+health status index    uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+yellow open   customer kCgkSFXnSLOlJo5BKVVRhQ   1   1          0            0       225b           225b
+{
+  "_index" : "customer",
+  "_id" : "1",
+  "_version" : 3,
+  "result" : "updated",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 2,
+  "_primary_term" : 1
+}
+
+curl -X GET "localhost:9200/customer/_doc/1?pretty&pretty"
+{
+  "_index" : "customer",
+  "_id" : "1",
+  "_version" : 3,
+  "_seq_no" : 2,
+  "_primary_term" : 1,
+  "found" : true,
+  "_source" : {
+    "name" : "John Doe"
+  }
+}
+
+curl -X DELETE "localhost:9200/customer?pretty&pretty"
+{
+  "acknowledged" : true
+}
+
+curl -X GET "localhost:9200/_cat/indices?v&pretty"
+health status index uuid pri rep docs.count docs.deleted store.size pri.store.size
+
+curl -X PUT "localhost:9200/customer?pretty"
+{
+  "acknowledged" : true,
+  "shards_acknowledged" : true,
+  "index" : "customer"
+}
+
+curl -X PUT localhost:9200/customer/_doc/1?pretty -H 'Content-Type: application/json' -d'
+{
+  name: John Doe
+}
+'
+{
+  "_index" : "customer",
+  "_id" : "1",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 0,
+  "_primary_term" : 1
+}
+
+curl -X GET localhost:9200/customer/_doc/1?pretty
+{
+  "_index" : "customer",
+  "_id" : "1",
+  "_version" : 1,
+  "_seq_no" : 0,
+  "_primary_term" : 1,
+  "found" : true,
+  "_source" : {
+    "name" : "John Doe"
+  }
+}
+
+curl -X DELETE localhost:9200/customer?pretty
+{
+  "acknowledged" : true
+}
