@@ -20,12 +20,17 @@ import java.io.IOException;
 import java.io.Reader;
 
 import org.apache.lucene.analysis.standard.StandardTokenizer;
+import org.apache.lucene.search.similarities.ClassicSimilarity;
+import org.apache.lucene.search.similarities.TFIDFSimilarity;
 import org.apache.lucene.analysis.CharArraySet;
 import org.apache.lucene.analysis.LowerCaseFilter;
 import org.apache.lucene.analysis.StopFilter;
 import org.apache.lucene.analysis.StopwordAnalyzerBase;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.WordlistLoader;
+
+// My added imports
+import org.apache.lucene.analysis.en.PorterStemFilter;
 
 /**
  * Filters {@link StandardTokenizer} with {@link LowerCaseFilter} and
@@ -83,6 +88,10 @@ public final class MyStandardAnalyzer extends StopwordAnalyzerBase {
     src.setMaxTokenLength(maxTokenLength);
     TokenStream tok = new LowerCaseFilter(src);
     tok = new StopFilter(tok, stopwords);
+    // Adding stem filter
+    tok = new PorterStemFilter(tok);
+    // Adding similarity filter
+    
     return new TokenStreamComponents(r -> {
       src.setMaxTokenLength(MyStandardAnalyzer.this.maxTokenLength);
       src.setReader(r);
