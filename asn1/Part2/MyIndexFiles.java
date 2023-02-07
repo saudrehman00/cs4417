@@ -38,6 +38,7 @@ import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig.OpenMode;
+import org.apache.lucene.search.similarities.ClassicSimilarity;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.store.Directory;
@@ -46,7 +47,6 @@ import org.apache.lucene.store.FSDirectory;
 // Adding import
 import java.util.Arrays;
 import java.util.List;
-import org.apache.lucene.analysis.PorterStemFilter;
 import org.apache.lucene.analysis.CharArraySet;
 /**
  * Index all text files under a directory.
@@ -105,6 +105,7 @@ public class MyIndexFiles {
       // Pass stopword CharArraySet into analyser
       Analyzer analyzer = new MyStandardAnalyzer(wordCharArraySet);
       IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
+      iwc.setSimilarity(new ClassicSimilarity());
 
       if (create) {
         // Create a new index in the directory, removing any
