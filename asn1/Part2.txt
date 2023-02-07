@@ -1,0 +1,211 @@
+1. THE LUCENE DEMO
+
+1.
+We can see from query 3 which is only a stopword, that stopwords are being used.
+Enter query: 
+Searching for: his fiery sword
+5 total matching documents
+1. documents/RJ3.txt
+2. documents/RJ5.txt
+3. documents/RJ4.txt
+4. documents/RJ9.txt
+5. documents/RJ6.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: alas o love
+5 total matching documents
+1. documents/RJ6.txt
+2. documents/RJ8.txt
+3. documents/RJ7.txt
+4. documents/RJ1.txt
+5. documents/RJ10.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: and
+8 total matching documents
+1. documents/RJ3.txt
+2. documents/RJ10.txt
+3. documents/RJ5.txt
+4. documents/RJ2.txt
+5. documents/RJ4.txt
+6. documents/RJ8.txt
+7. documents/RJ7.txt
+8. documents/RJ1.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: reckon
+0 total matching documents
+Enter query: 
+Searching for: q
+0 total matching documents
+Enter query: 
+Searching for: love
+4 total matching documents
+1. documents/RJ6.txt
+2. documents/RJ7.txt
+3. documents/RJ1.txt
+4. documents/RJ10.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: fair
+3 total matching documents
+1. documents/RJ9.txt
+2. documents/RJ10.txt
+3. documents/RJ1.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+
+2.
+Lucene does seem to index stopwords as seen with the query "and" which is a stopword and returns a result
+3.
+It does not seem to do any stemming as the word love's exists in document 8 but that document is not returned in the search files.
+4.
+It cannot be deduced from the queries above as the search function does not indicate what it matched in each of the documentsand considering all the documents have multiple occurrences of each of the search terms.
+
+# MODIFYING THE DEMO
+## STOPPING
+Enter query: 
+Searching for: his fiery sword
+1 total matching documents
+1. Part2/documents/RJ3.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: alas o love
+5 total matching documents
+1. Part2/documents/RJ6.txt
+2. Part2/documents/RJ8.txt
+3. Part2/documents/RJ7.txt
+4. Part2/documents/RJ1.txt
+5. Part2/documents/RJ10.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: and
+8 total matching documents
+1. Part2/documents/RJ3.txt
+2. Part2/documents/RJ10.txt
+3. Part2/documents/RJ5.txt
+4. Part2/documents/RJ2.txt
+5. Part2/documents/RJ4.txt
+6. Part2/documents/RJ8.txt
+7. Part2/documents/RJ7.txt
+8. Part2/documents/RJ1.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: reckon
+0 total matching documents
+Enter query: 
+Searching for: love
+4 total matching documents
+1. Part2/documents/RJ6.txt
+2. Part2/documents/RJ7.txt
+3. Part2/documents/RJ1.txt
+4. Part2/documents/RJ10.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: fair
+3 total matching documents
+1. Part2/documents/RJ9.txt
+2. Part2/documents/RJ10.txt
+3. Part2/documents/RJ1.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+
+## STEMMING
+Enter query: 
+Searching for: hi fieri sword
+1 total matching documents
+1. Part2/documents/RJ3.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: alas o love
+5 total matching documents
+1. Part2/documents/RJ6.txt
+2. Part2/documents/RJ8.txt
+3. Part2/documents/RJ7.txt
+4. Part2/documents/RJ1.txt
+5. Part2/documents/RJ10.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: and
+8 total matching documents
+1. Part2/documents/RJ3.txt
+2. Part2/documents/RJ10.txt
+3. Part2/documents/RJ5.txt
+4. Part2/documents/RJ2.txt
+5. Part2/documents/RJ4.txt
+6. Part2/documents/RJ8.txt
+7. Part2/documents/RJ7.txt
+8. Part2/documents/RJ1.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: reckon
+1 total matching documents
+1. Part2/documents/RJ10.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: love
+5 total matching documents
+1. Part2/documents/RJ6.txt
+2. Part2/documents/RJ7.txt
+3. Part2/documents/RJ8.txt
+4. Part2/documents/RJ1.txt
+5. Part2/documents/RJ10.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: fair
+3 total matching documents
+1. Part2/documents/RJ9.txt
+2. Part2/documents/RJ10.txt
+3. Part2/documents/RJ1.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+
+## Similarity
+Enter query: 
+Searching for: hi fieri sword
+1 total matching documents
+1. Part2/documents/RJ3.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: ala o love
+5 total matching documents
+1. Part2/documents/RJ6.txt
+2. Part2/documents/RJ8.txt
+3. Part2/documents/RJ7.txt
+4. Part2/documents/RJ1.txt
+5. Part2/documents/RJ10.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: and
+8 total matching documents
+1. Part2/documents/RJ3.txt
+2. Part2/documents/RJ10.txt
+3. Part2/documents/RJ5.txt
+4. Part2/documents/RJ2.txt
+5. Part2/documents/RJ4.txt
+6. Part2/documents/RJ8.txt
+7. Part2/documents/RJ7.txt
+8. Part2/documents/RJ1.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: reckon
+1 total matching documents
+1. Part2/documents/RJ10.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: love
+5 total matching documents
+1. Part2/documents/RJ6.txt
+2. Part2/documents/RJ7.txt
+3. Part2/documents/RJ8.txt
+4. Part2/documents/RJ1.txt
+5. Part2/documents/RJ10.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: fair
+3 total matching documents
+1. Part2/documents/RJ9.txt
+2. Part2/documents/RJ10.txt
+3. Part2/documents/RJ1.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
