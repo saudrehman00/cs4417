@@ -162,12 +162,12 @@ Enter query:
 
 ## Similarity
 Enter query: 
-Searching for: hi fieri sword
+Searching for: his fiery sword
 1 total matching documents
 1. Part2/documents/RJ3.txt
 Press (q)uit or enter number to jump to a page.
 Enter query: 
-Searching for: ala o love
+Searching for: alas o love
 5 total matching documents
 1. Part2/documents/RJ6.txt
 2. Part2/documents/RJ8.txt
