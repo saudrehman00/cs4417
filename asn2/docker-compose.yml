@@ -1,10 +1,16 @@
 version: '3'
 
 services:
-  app:
+  app-p1:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: p1/Dockerfile
     volumes:
-      - ./code:/app
+      - ./p1:/app
+  app-p2:
+    build:
+      context: .
+      dockerfile: p2/Dockerfile
+    volumes:
+      - ./p2:/app
 
