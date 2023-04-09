@@ -1,6 +1,6 @@
 function myMapper() {
     this.entities.hashtags.forEach(function (hashtag){
-        emit(hashtag, 1);
+        emit(hashtag.text, 1);
     })
 }
 
